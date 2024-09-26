@@ -4,6 +4,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Set;
+
 
 
 public class findDuplicate {
@@ -17,12 +20,21 @@ public class findDuplicate {
     }
 
     private static List<Integer> findDuplicates(List<Integer> list) {
-        return list.stream()
+        // Add block comment here
+
+        /*return list.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .stream()
                 .filter(e -> e.getValue() > 1)
                 .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
+
+       //use Set datastructure to find duplicate elements
+
+        Set<Integer> seen = new HashSet<>();
+        return list.stream()
+            .filter(n -> !seen.add(n))
+            .collect(Collectors.toList());
     }
 }
